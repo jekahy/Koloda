@@ -323,7 +323,6 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
             let newX = topPoint.x + self.frame.size.width * diffX
             let newY = topPoint.y + self.frame.size.height * diffY
             let newPoint = CGPoint(x: newX, y: newY)
-            print("newPoint=\(newPoint), topPoint=\(topPoint)")
             return newPoint
         }else{
             let point = direction.point
@@ -345,8 +344,6 @@ public class DraggableCardView: UIView, UIGestureRecognizerDelegate {
         let translationAnimation = POPBasicAnimation(propertyNamed: kPOPLayerTranslationXY)
         translationAnimation?.duration = cardSwipeActionAnimationDuration
         translationAnimation?.fromValue = NSValue(cgPoint: POPLayerGetTranslationXY(layer))
-        
-        print("layer=\(layer.position) anchor=\(layer.anchorPoint)")
         
         translationAnimation?.toValue = NSValue(cgPoint: animationPointForDirection(direction))
         translationAnimation?.completionBlock = { _, _ in

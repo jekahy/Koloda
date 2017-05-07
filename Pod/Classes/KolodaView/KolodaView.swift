@@ -126,6 +126,7 @@ open class KolodaView: UIView, DraggableCardDelegate {
                 for index in 0..<countOfNeededCards {
                     let actualIndex = index + currentCardIndex
                     let nextCardView = createCard(at: actualIndex)
+                    nextCardView.topDismissPoint = self.topDismissPoint
                     let isTop = index == 0
                     nextCardView.isUserInteractionEnabled = isTop
                     nextCardView.alpha = alphaValueOpaque
