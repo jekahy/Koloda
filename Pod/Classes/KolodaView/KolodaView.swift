@@ -52,7 +52,8 @@ public protocol KolodaViewDelegate: class {
     func kolodaSwipeThresholdRatioMargin(_ koloda: KolodaView) -> CGFloat?
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int)
     func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int ) -> Bool
-    
+    func koloda(_ koloda: KolodaView, firstCardDidLayout view:UIView?)
+
 }
 
 public extension KolodaViewDelegate {
@@ -71,7 +72,8 @@ public extension KolodaViewDelegate {
     func kolodaSwipeThresholdRatioMargin(_ koloda: KolodaView) -> CGFloat? { return nil}
     func koloda(_ koloda: KolodaView, didShowCardAt index: Int) {}
     func koloda(_ koloda: KolodaView, shouldDragCardAt index: Int ) -> Bool { return true }
-    
+    func koloda(_ koloda: KolodaView, firstCardDidLayout view:UIView?){}
+
 }
 
 open class KolodaView: UIView, DraggableCardDelegate {
@@ -151,6 +153,7 @@ open class KolodaView: UIView, DraggableCardDelegate {
         if index == 0 {
             card.layer.transform = CATransform3DIdentity
             card.frame = frameForTopCard()
+            delegate?.koloda(self, view:card.contentView)
         } else {
             let cardParameters = backgroundCardParametersForFrame(frameForCard(at: index))
             let scale = cardParameters.scale
