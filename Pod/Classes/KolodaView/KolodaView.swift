@@ -153,7 +153,7 @@ open class KolodaView: UIView, DraggableCardDelegate {
         if index == 0 {
             card.layer.transform = CATransform3DIdentity
             card.frame = frameForTopCard()
-            delegate?.koloda(self, view:card.contentView)
+            delegate?.koloda(self, firstCardDidLayout: card.contentView)
         } else {
             let cardParameters = backgroundCardParametersForFrame(frameForCard(at: index))
             let scale = cardParameters.scale
